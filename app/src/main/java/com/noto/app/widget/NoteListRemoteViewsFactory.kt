@@ -71,7 +71,7 @@ class NoteListRemoteViewsFactory(private val context: Context, intent: Intent?) 
     override fun getCount(): Int = notes.count()
 
     override fun getViewAt(position: Int): RemoteViews {
-        val remoteViews = RemoteViews(context.packageName, R.layout.widget_note_item).apply {
+        val remoteViews = RemoteViews(context.packageName, R.layout.widget_t).apply {
             val pair = notes[position]
             val intent = Intent(Constants.Intent.ActionOpenNote, null, context, AppActivity::class.java).apply {
                 putExtra(Constants.LibraryId, library.id)
@@ -89,6 +89,7 @@ class NoteListRemoteViewsFactory(private val context: Context, intent: Intent?) 
             }
             setOnClickFillInIntent(R.id.ll, intent)
             setContentDescription(R.id.ll, pair.first.title)
+            setTextViewText(R.id.tvContent,notes.get(0).first.body)
             setTextViewText(R.id.tv_note_title, pair.first.title)
             setTextViewText(R.id.tv_creation_date, context.stringResource(R.string.created, pair.first.creationDate.format(context)))
             setViewVisibility(R.id.tv_creation_date, if (library.isShowNoteCreationDate) View.VISIBLE else View.GONE)

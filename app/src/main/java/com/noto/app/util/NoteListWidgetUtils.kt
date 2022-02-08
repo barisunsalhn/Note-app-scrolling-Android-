@@ -24,7 +24,7 @@ fun Context.createNoteListWidgetRemoteViews(
     isEmpty: Boolean,
 ): RemoteViews {
     val color = colorResource(library.color.toResource())
-    return RemoteViews(packageName, R.layout.note_list_widget).apply {
+    return RemoteViews(packageName, R.layout.widget_l).apply {
         setTextViewText(R.id.tv_library_title, library.title)
         setTextColor(R.id.tv_library_title, color)
         setViewVisibility(R.id.ll_header, if (isHeaderEnabled) View.VISIBLE else View.GONE)
@@ -35,14 +35,12 @@ fun Context.createNoteListWidgetRemoteViews(
         setViewVisibility(R.id.tv_placeholder, if (isEmpty) View.VISIBLE else View.GONE)
         setViewVisibility(R.id.lv, if (isEmpty) View.GONE else View.VISIBLE)
         setOnClickPendingIntent(R.id.iv_edit_widget, createEditWidgetButtonPendingIntent(appWidgetId, library.id))
-        setOnClickPendingIntent(R.id.ib_fab, createNewNoteButtonPendingIntent(appWidgetId, library.id))
         setOnClickPendingIntent(R.id.iv_app_icon, createAppLauncherPendingIntent(appWidgetId))
         setOnClickPendingIntent(R.id.tv_library_title, createLibraryLauncherPendingIntent(appWidgetId, library.id))
-        setRemoteAdapter(R.id.lv, createNoteListServiceIntent(appWidgetId, library.id))
+        setRemoteAdapter(R.id.lvContent, createNoteListServiceIntent(appWidgetId, library.id))
         setPendingIntentTemplate(R.id.lv, createNoteItemPendingIntent(appWidgetId))
         setInt(R.id.ll, SetBackgroundResourceMethodName, widgetRadius.toWidgetShapeId())
         setInt(R.id.ll_header, SetBackgroundResourceMethodName, widgetRadius.toWidgetHeaderShapeId())
-        setInt(R.id.iv_fab, SetColorFilterMethodName, color)
         setInt(R.id.iv_edit_widget, SetColorFilterMethodName, color)
         if (isAppIconEnabled)
             setViewPadding(R.id.tv_library_title, 0.dp, 16.dp, 0.dp, 16.dp)

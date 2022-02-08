@@ -31,7 +31,7 @@
 
             <include
                 android:id="@+id/widget"
-                layout="@layout/note_list_widget" />
+                layout="@layout/widget_l" />
         </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -46,8 +46,8 @@ class NoteListWidgetConfigActivity : BaseActivity() {
 
     private fun NoteListWidgetConfigActivityBinding.setupState() {
         setResult(Activity.RESULT_CANCELED)
-        widget.lv.dividerHeight = 16.dp
-        widget.lv.setPaddingRelative(8.dp, 16.dp, 8.dp, 100.dp)
+        widget.lvContent.dividerHeight = 16.dp
+        widget.lvContent.setPaddingRelative(8.dp, 16.dp, 8.dp, 100.dp)
         widget.root.clipToOutline = true
 
         viewModel.isWidgetCreated
@@ -65,10 +65,6 @@ class NoteListWidgetConfigActivity : BaseActivity() {
             val colorStateList = color.toColorStateList()
             tvFilterLabels.isVisible = labels.isNotEmpty()
             rv.isVisible = labels.isNotEmpty()
-            widget.tvLibraryTitle.text = library.title
-            widget.tvLibraryTitle.setTextColor(color)
-            widget.fab.background?.setTint(color)
-            widget.ivFab.setColorFilter(color)
             listOf(swWidgetHeader, swEditWidget, swAppIcon, swNewLibrary)
                 .onEach { it.setupColors(thumbCheckedColor = color, trackCheckedColor = color) }
             if (colorStateList != null) {
@@ -77,14 +73,12 @@ class NoteListWidgetConfigActivity : BaseActivity() {
                 sWidgetRadius.tickInactiveTintList = colorStateList
             }
             if (filteredNotes.isEmpty()) {
-                widget.lv.isVisible = false
-                widget.tvPlaceholder.isVisible = true
+                widget.lvContent.isVisible = false
             } else {
-                widget.lv.isVisible = true
-                widget.tvPlaceholder.isVisible = false
-                widget.lv.adapter = NoteListWidgetAdapter(
+                widget.lvContent.isVisible = true
+                widget.lvContent.adapter = NoteListWidgetAdapter(
                     this@NoteListWidgetConfigActivity,
-                    R.layout.note_list_widget,
+                    R.layout.widget_l,
                     filteredNotes,
                     library.isShowNoteCreationDate,
                     library.color,
@@ -114,7 +108,6 @@ class NoteListWidgetConfigActivity : BaseActivity() {
 
         viewModel.isWidgetHeaderEnabled
             .onEach { isEnabled ->
-                widget.llHeader.isVisible = isEnabled
                 swWidgetHeader.isChecked = isEnabled
                 swAppIcon.isVisible = isEnabled
                 swEditWidget.isVisible = isEnabled
@@ -123,25 +116,18 @@ class NoteListWidgetConfigActivity : BaseActivity() {
 
         viewModel.isEditWidgetButtonEnabled
             .onEach { isEnabled ->
-                widget.llEditWidget.isVisible = isEnabled
                 swEditWidget.isChecked = isEnabled
             }
             .launchIn(lifecycleScope)
 
         viewModel.isAppIconEnabled
             .onEach { isEnabled ->
-                widget.ivAppIcon.isVisible = isEnabled
                 swAppIcon.isChecked = isEnabled
-                if (isEnabled)
-                    widget.tvLibraryTitle.setPadding(0.dp, 16.dp, 0.dp, 16.dp)
-                else
-                    widget.tvLibraryTitle.setPadding(16.dp)
             }
             .launchIn(lifecycleScope)
 
         viewModel.isNewLibraryButtonEnabled
             .onEach { isEnabled ->
-                widget.fab.isVisible = isEnabled
                 swNewLibrary.isChecked = isEnabled
             }
             .launchIn(lifecycleScope)
@@ -149,8 +135,6 @@ class NoteListWidgetConfigActivity : BaseActivity() {
         viewModel.widgetRadius
             .onEach { radius ->
                 sWidgetRadius.value = radius.toFloat()
-                widget.ll.background = drawableResource(radius.toWidgetShapeId())
-                widget.llHeader.background = drawableResource(radius.toWidgetHeaderShapeId())
             }
             .launchIn(lifecycleScope)
     }

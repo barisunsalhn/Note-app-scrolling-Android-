@@ -9,6 +9,17 @@
         <entry key="../../.gradle/caches/transforms-3/22edce91b047008032d6884bfdc23003/transformed/jetified-fastadapter-extensions-ui-5.4.1/res/layout/three_line_item.xml" value="0.21611842105263157" />
         <entry key="../../.gradle/caches/transforms-3/22edce91b047008032d6884bfdc23003/transformed/jetified-fastadapter-extensions-ui-5.4.1/res/layout/two_line_item.xml" value="0.21611842105263157" />
         <entry key="../../Android/Sdk/platforms/android-31/data/res/drawable/btn_radio.xml" value="0.2241042345276873" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/library_list_widget.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/note_list_widget.xml" value="0.2" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/note_list_widget_config_activity.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/row.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widgetList.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widgetText.xml" value="0.27760416666666665" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widget_l.xml" value="0.27760416666666665" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widget_library_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widget_note_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widget_note_label_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/dlp/Desktop/Noto/app/src/main/res/layout/widget_t.xml" value="0.27760416666666665" />
         <entry key="app/src/main/res/drawable-v21/ic_launcher_background.xml" value="0.17777777777777778" />
         <entry key="app/src/main/res/drawable-v21/ic_splash_screen_foreground.xml" value="0.17777777777777778" />
         <entry key="app/src/main/res/drawable-v21/splash_screen.xml" value="0.17777777777777778" />

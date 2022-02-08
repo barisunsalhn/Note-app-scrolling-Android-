@@ -11,17 +11,7 @@ plugins {
 android {
     compileSdk = App.CompileSDK
     buildToolsVersion = App.BuildTools
-    signingConfigs {
-        create("release") {
-            val properties = Properties().apply {
-                load(project.rootProject.file("local.properties").inputStream())
-            }
-            storeFile = file(properties["store.file"] as String)
-            storePassword = properties["store.password"] as String
-            keyAlias = properties["key.alias"] as String
-            keyPassword = properties["key.password"] as String
-        }
-    }
+
     bundle {
         language {
             enableSplit = false
@@ -41,31 +31,13 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
+
         getByName("debug") {
             versionNameSuffix = "-debug"
             applicationIdSuffix = ".debug"
             isDebuggable = true
         }
-        create("release-candidate") {
-            versionNameSuffix = "-rc"
-            applicationIdSuffix = ".rc"
-            isMinifyEnabled = true
-            isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
+
     }
 
     buildFeatures {
