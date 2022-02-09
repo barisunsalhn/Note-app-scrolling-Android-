@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import com.noto.app.R
 import com.noto.app.domain.repository.LibraryRepository
 import com.noto.app.domain.repository.NoteRepository
 import com.noto.app.domain.source.LocalStorage
@@ -31,6 +32,7 @@ class NoteListWidgetProvider : AppWidgetProvider(), KoinComponent {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         libraryId = intent?.getLongExtra(Constants.LibraryId, 0) ?: 0
+
         super.onReceive(context, intent)
     }
 
@@ -47,11 +49,15 @@ class NoteListWidgetProvider : AppWidgetProvider(), KoinComponent {
                         storage.getOrNull(appWidgetId.NewItemButton).map { it?.toBoolean() ?: true }.first(),
                         storage.getOrNull(appWidgetId.Radius).map { it?.toInt() ?: 16 }.first(),
                         libraryRepository.getLibraryById(libraryId).first(),
-                        noteRepository.getNotesByLibraryId(libraryId).first().isEmpty(),
+                        noteRepository.getNotesByLibraryId(libraryId).first().get(0),
                     )
+
                     appWidgetManager?.updateAppWidget(appWidgetId, remoteViews)
                 }
             }
+        }
+        if (appWidgetManager != null) {
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.lvContent)
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds)
     }

@@ -10,6 +10,7 @@ import android.widget.RemoteViews
 import com.noto.app.AppActivity
 import com.noto.app.R
 import com.noto.app.domain.model.Library
+import com.noto.app.domain.model.Note
 import com.noto.app.widget.NoteListWidgetConfigActivity
 import com.noto.app.widget.NoteListWidgetService
 
@@ -21,19 +22,18 @@ fun Context.createNoteListWidgetRemoteViews(
     isNewLibraryButtonEnabled: Boolean,
     widgetRadius: Int,
     library: Library,
-    isEmpty: Boolean,
+    note: Note,
 ): RemoteViews {
     val color = colorResource(library.color.toResource())
     return RemoteViews(packageName, R.layout.widget_l).apply {
         setTextViewText(R.id.tv_library_title, library.title)
+        //setTextViewText(R.id.tvContent, note.body)
         setTextColor(R.id.tv_library_title, color)
         setViewVisibility(R.id.ll_header, if (isHeaderEnabled) View.VISIBLE else View.GONE)
         setViewVisibility(R.id.iv_edit_widget, if (isEditWidgetButtonEnabled) View.VISIBLE else View.GONE)
         setViewVisibility(R.id.iv_app_icon, if (isAppIconEnabled) View.VISIBLE else View.GONE)
         setViewVisibility(R.id.fab, if (isNewLibraryButtonEnabled) View.VISIBLE else View.GONE)
         setViewVisibility(R.id.fab, if (isNewLibraryButtonEnabled) View.VISIBLE else View.GONE)
-        setViewVisibility(R.id.tv_placeholder, if (isEmpty) View.VISIBLE else View.GONE)
-        setViewVisibility(R.id.lv, if (isEmpty) View.GONE else View.VISIBLE)
         setOnClickPendingIntent(R.id.iv_edit_widget, createEditWidgetButtonPendingIntent(appWidgetId, library.id))
         setOnClickPendingIntent(R.id.iv_app_icon, createAppLauncherPendingIntent(appWidgetId))
         setOnClickPendingIntent(R.id.tv_library_title, createLibraryLauncherPendingIntent(appWidgetId, library.id))

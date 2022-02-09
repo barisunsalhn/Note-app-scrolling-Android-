@@ -179,7 +179,7 @@ class NoteListWidgetConfigActivity : BaseActivity() {
                     viewModel.isNewLibraryButtonEnabled.value,
                     viewModel.widgetRadius.value,
                     viewModel.library.value,
-                    viewModel.notes.value.isEmpty(),
+                    viewModel.notes.value.first().first,
                 )
             )
             val resultValue = Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
